@@ -1,0 +1,64 @@
+public class PokemonApi {
+    @AuraEnabled
+    public static Map<String,Object> getPokemon(String name){
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('https://pokeapi.co/api/v2/pokemon/' + name);
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+
+        if(response.getStatusCode() == 200){
+            Map<String,Object> respMap = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
+
+            //String pokemonName = String.valueOf(respMap.get('name'));
+
+            return respMap;
+        }
+        return null;
+    }
+    
+    @AuraEnabled
+    public static Map<String,Object> getPage(String url) {
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(url);
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        
+        if (response.getStatusCode() == 200) {
+            Map<String,Object> respMap = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
+            return respMap;
+        }
+        return null;
+    }
+    
+    @AuraEnabled
+    public static Map<String,Object> initialize() {
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('https://pokeapi.co/api/v2/pokemon?limit=10');
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        
+        if (response.getStatusCode() == 200) {
+            Map<String,Object> respMap = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
+            return respMap;
+        }
+        return null;
+    }
+    
+    @AuraEnabled
+    public static Map<String,Object> getAllNames() {
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('https://pokeapi.co/api/v2/pokemon?limit=1118');
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        
+        if (response.getStatusCode() == 200) {
+            Map<String,Object> respMap = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
+            return respMap;
+        }
+        return null;
+    }
+}
