@@ -1,0 +1,87 @@
+<aura:component controller="PokemonApi" >
+    <aura:attribute name="names" type="String[]"/>
+    <aura:attribute name="pokemonName" type="String"/>
+    <aura:attribute name="show" type="Boolean"/>
+    <aura:attribute name="showDex" type="Boolean" default="true"/>
+    
+    <aura:attribute name="sprite" type="String"/>
+    <aura:attribute name="types" type="String[]"/>
+    <aura:attribute name="height" type="Integer"/>
+    <aura:attribute name="weight" type="Integer"/>
+    
+    <aura:attribute name="searchValue" type="String"/>
+    <lightning:input type="text" value="{!v.searchValue}" label="Search" oncommit="{!c.submitSearch}"/>
+    
+    <aura:attribute name="nextPage" type="String"/>
+    <aura:attribute name="previousPage" type="String"/>
+    <lightning:button label="Next" onclick="{!c.getPokemonNames}" value="{!v.nextPage}"/>
+    <lightning:button label="Previous" onclick="{!c.getPokemonNames}" value="{!v.previousPage}"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.initPokemonNames}" />
+    <!--aura:if isTrue="{!v.showDex}" >
+        <table>
+            <thead><tr><th>Pokemon Name</th></tr></thead>
+            <tbody>
+                <aura:iteration items="{!v.names}" var="name" >
+                    <tr>
+                        <td>
+                            <lightning:button label="{!name}" onclick="{!c.showPokemon}" />
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </aura:if-->
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-3">
+        	<aura:iteration items="{!v.names}" var="name" >
+            	<lightning:card title="{!name}" >
+                    <lightning:button label="Details" onclick="{!c.showPokemon}" value="{!name}"/>
+                </lightning:card>
+            </aura:iteration>
+        </div>
+        <aura:if isTrue="{!v.show}">
+            <div class="slds-col slds-size_2-of-3">
+                <lightning:card title="{!v.pokemonName}" >
+                    <img src="{!v.sprite}" alt="poke pic missing"/>
+                    <aura:iteration items="{!v.types}" var="type">
+                        <div>Type: {!type}</div>
+                    </aura:iteration>
+                    <div>Height: {!v.height}</div>
+                    <div>Weight: {!v.weight}</div>
+                </lightning:card>
+            </div>
+        </aura:if>
+    </div>
+    <!--aura:if isTrue="{!v.show}" >
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col" ></div>
+            <div class="slds-col" >
+                <div class="outer" >
+                    <div class="inner">
+                        <lightning:card title="{!v.pokemonName}" >
+                            <img src="{!v.sprite}" alt="poke pic missing"/>
+                        </lightning:card>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col" ></div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.show}" >
+            <div class="outer" >
+                <div class="inner">
+                    <img src="{!v.sprite}" alt="poke pic missing" />
+                    {!v.pokemonName}
+                    <aura:iteration items="{!v.types}" var="type">
+                        <div>Type: {!type}</div>
+                    </aura:iteration>
+                    <div>Height: {!v.height}</div>
+                    <div>Weight: {!v.weight}</div>
+                </div>
+            </div>
+            <div>
+                <lightning:button label="Back" onclick="{!c.showList}"/>
+            </div>
+    </aura:if-->
+</aura:component>
