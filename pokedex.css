@@ -1,5 +1,66 @@
 .THIS {
     font-family: 'Pokemon GB';
+    color: rgb(24,24,24);
+}
+.THIS .BUG {
+    --sds-c-pill-color-background: #A8B820;
+}
+.THIS .DARK {
+    --sds-c-pill-color-background: #705848;
+}
+.THIS .DRAGON {
+    --sds-c-pill-color-background: #7038F8;
+}
+.THIS .ELECTRIC {
+    --sds-c-pill-color-background: #F8D030;
+}
+.THIS .FAIRY {
+    --sds-c-pill-color-background: #EE99AC;
+}
+.THIS .FIGHTING {
+    --sds-c-pill-color-background: #C03028;
+}
+.THIS .FIRE {
+    --sds-c-pill-color-background: #F08030;
+}
+.THIS .FLYING {
+    --sds-c-pill-color-background: #A890F0;
+}
+.THIS .GHOST {
+    --sds-c-pill-color-background: #705898;
+}
+.THIS .GRASS {
+    --sds-c-pill-color-background: #78C850;
+}
+.THIS .GROUND {
+    --sds-c-pill-color-background: #E0C068;
+}
+.THIS .ICE {
+    --sds-c-pill-color-background: #98D8D8;
+}
+.THIS .NORMAL {
+    --sds-c-pill-color-background: #A8A878;
+}
+.THIS .POISON {
+    --sds-c-pill-color-background: #A040A0;
+}
+.THIS .PSYCHIC {
+    --sds-c-pill-color-background: #F85888;
+}
+.THIS .ROCK {
+    --sds-c-pill-color-background: #B8A038;
+}
+.THIS .STEEL {
+    --sds-c-pill-color-background: #B8B8D0;
+}
+.THIS .WATER {
+    --sds-c-pill-color-background: #6890F0;
+}
+.THIS .slds-pill__remove {
+        display: none;
+}
+.THIS .slds-card {
+    background-color: rgb(248,248,248);
 }
 .THIS.outer {
     border: 3px solid rgb(136,72,40);
