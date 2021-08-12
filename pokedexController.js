@@ -6,7 +6,7 @@
                 let respMap = response.getReturnValue();
                 let names = [];
                 for (let i=0; i<10; i++) {
-                    names.push(respMap.results[i].name);
+                    names.push(respMap.results[i].name.toUpperCase());
                 }
                 component.set("v.names", names);
                 component.set("v.nextPage", respMap.next);
@@ -23,7 +23,7 @@
                 let respMap = response.getReturnValue();
                 let names = [];
                 for (let i=0; i<10; i++) {
-                    names.push(respMap.results[i].name);
+                    names.push(respMap.results[i].name.toUpperCase());
                 }
                 component.set("v.names", names);
                 component.set("v.nextPage", respMap.next);
@@ -36,15 +36,15 @@
         component.set("v.show", true);
         component.set("v.showDex", false);
 		let pokemon = component.get("c.getPokemon");
-        pokemon.setParam("name", event.getSource().get("v.value"));
+        pokemon.setParam("name", event.getSource().get("v.value").toLowerCase());
         pokemon.setCallback(this, function(response) {
             if (response.getState() === "SUCCESS") {
                 let respMap = response.getReturnValue();
-                component.set("v.pokemonName", respMap.name);
+                component.set("v.pokemonName", respMap.name.toUpperCase());
                 component.set("v.sprite", respMap.sprites.front_default);
                 let types = [];
                 for (let t in respMap.types) {
-                    types.push(respMap.types[t].type.name);
+                    types.push(respMap.types[t].type.name.toUpperCase());
                 }
                 component.set("v.types", types);
                 component.set("v.height", respMap.height);
@@ -66,11 +66,11 @@
                 if (respMap != null) {
                     component.set("v.show", true);
                     component.set("v.showDex", false);
-                    component.set("v.pokemonName", respMap.name);
+                    component.set("v.pokemonName", respMap.name.toUpperCase());
                     component.set("v.sprite", respMap.sprites.front_default);
                     let types = [];
                     for (let t in respMap.types) {
-                        types.push(respMap.types[t].type.name);
+                        types.push(respMap.types[t].type.name.toUpperCase());
                     }
                     component.set("v.types", types);
                     component.set("v.height", respMap.height);
