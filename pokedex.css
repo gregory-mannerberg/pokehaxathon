@@ -1,0 +1,15 @@
+.THIS {
+    font-family: 'Pokemon GB';
+}
+.THIS.outer {
+    border: 3px solid rgb(136,72,40);
+}
+.THIS .inner {
+    border: 1px solid rgb(24,24,24);
+    padding: 5px;
+    background-color: rgb(248,248,248);
+}
+@font-face {
+    font-family: 'Pokemon GB';
+    src: url(/resource/gbfont);
+}
