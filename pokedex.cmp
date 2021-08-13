@@ -14,11 +14,11 @@
     
     <aura:attribute name="searchValue" type="String"/>
     <lightning:input type="text" value="{!v.searchValue}" label="Search" oncommit="{!c.submitSearch}"/>
-    
-    <aura:attribute name="nextPage" type="String"/>
+
     <aura:attribute name="previousPage" type="String"/>
-    <lightning:button label="Next" onclick="{!c.getPokemonNames}" value="{!v.nextPage}"/>
+    <aura:attribute name="nextPage" type="String"/>
     <lightning:button label="Previous" onclick="{!c.getPokemonNames}" value="{!v.previousPage}"/>
+    <lightning:button label="Next" onclick="{!c.getPokemonNames}" value="{!v.nextPage}"/>  
     
     <aura:handler name="init" value="{!this}" action="{!c.initPokemonNames}" />
     <!--aura:if isTrue="{!v.showDex}" >
@@ -35,45 +35,34 @@
             </tbody>
         </table>
     </aura:if-->
-    <div class="slds-grid">
+    <div class="slds-grid slds-gutters">
         <div class="slds-col slds-size_1-of-3">
-            <aura:iteration items="{!v.names}" var="name" >
-                <lightning:card title="{!name}" >
+        	<aura:iteration items="{!v.names}" var="name" >
+            	<lightning:card title="{!name}" >
                     <lightning:button label="Details" onclick="{!c.showPokemon}" value="{!name}"/>
                 </lightning:card>
             </aura:iteration>
         </div>
-        <aura:if isTrue="{!v.show}">
+         <aura:if isTrue="{!v.show}">
             <div class="slds-col slds-size_2-of-3">
+                <lightning:card title="{!v.pokemonName}" >
+                    <img src="{!v.sprite}" alt="poke pic missing"/>
+                    <aura:iteration items="{!v.types}" var="type">
+                        <div>Type: <lightning:pill class="{!type}" label="{!type}"/></div>
+                    </aura:iteration>
+                    <div>Height: {!v.height}</div>
+                    <div>Weight: {!v.weight}</div>
+                </lightning:card>
                 <lightning:accordion aura:id="accordion" activeSectionName="B">
-                    <lightning:accordionSection name="A" label="Description">
-                        <aura:set attribute="actions">
-                            <lightning:buttonMenu aura:id="menu" alternativeText="Show menu" iconSize="x-small" menuAlignment="right">
-                                <lightning:menuItem value="New" label="Menu Item One" />
-                                <lightning:menuItem value="Edit" label="Menu Item Two" />
-                            </lightning:buttonMenu>
-                        </aura:set>
-                        <aura:set attribute="body">
-                            <lightning:card title="{!v.pokemonName}" >
-                                <img src="{!v.sprite}" alt="poke pic missing"/>
-                                <aura:iteration items="{!v.types}" var="type">
-                                    <div>Type: {!type}</div>
-                                </aura:iteration>
-                                <div>Height: {!v.height}</div>
-                                <div>Weight: {!v.weight}</div>
-                                <div>National Id: {!v.id}</div>
-                            </lightning:card>
-                        </aura:set> 
-                    </lightning:accordionSection>
                     <lightning:accordionSection name="B" label="Abilities">
-                        <lightning:card title="Abilities" >
+                        <lightning:card >
                             <aura:iteration items="{!v.abilities}" var="ability">
                                 <div>{!ability}</div>
                             </aura:iteration>
                         </lightning:card>
                     </lightning:accordionSection>
                     <lightning:accordionSection name="C" label="Moves">
-                        <lightning:card title="Moves">
+                        <lightning:card >
                             <aura:iteration items="{!v.moves}" var="move">
                                 <div>{!move}</div>
                             </aura:iteration>
@@ -114,4 +103,7 @@
                 <lightning:button label="Back" onclick="{!c.showList}"/>
             </div>
     </aura:if-->
+    <!--aura:attribute name="acc" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.expose}"/>
+    <div>Account Name: {!acc}</div-->
 </aura:component>
